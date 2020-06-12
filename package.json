@@ -1,0 +1,26 @@
+{
+  "name": "fcc-url-shortener-microservice",
+  "version": "1.0.0",
+  "description": "This repository follows Free Code Camp's guidelines for using Node/Express to build a URL shortening API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devstart": "nodemon server.js",
+    "serverstart": "DEBUG=FCC-URL-Shortener-Microservice:* npm run devstart"      
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OutlawJessie/FCC-URL-Shortener-Microservice.git"
+  },
+  "author": "Jessie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OutlawJessie/FCC-URL-Shortener-Microservice/issues"
+  },
+  "homepage": "https://github.com/OutlawJessie/FCC-URL-Shortener-Microservice#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

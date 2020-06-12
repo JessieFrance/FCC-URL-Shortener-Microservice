@@ -1,0 +1,26 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 2rem;
+    background-color: rgb(215,215,215);/*#d3d3d3;*/
+   
+}
+
+.container {
+    width: 75vw;
+    margin: 0 auto 0 auto;
+}
+
+h1, h2  {
+    text-align: center;
+}
+
+#urls, #output {
+    text-align: center;
+}
+
+code {
+    background-color: rgb(230,230,230);
+}
