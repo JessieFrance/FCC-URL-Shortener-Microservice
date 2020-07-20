@@ -1,9 +1,24 @@
+// Load/Require express libray, and start an app.
 var express = require("express");
 var app = express();
 
 // Use CORS so FCC can test stuff.
 var cors = require('cors');
 app.use(cors());
+
+// Load/Require dotenv package for local environment variables,
+// and configure it.
+require('dotenv').config()
+
+
+// Set up database connection.
+var mongoose = require('mongoose');
+var mongoDB = process.env.MONGODB_URI;
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 // Link up public folder for .css stylesheet.
 app.use(express.static("public"));
