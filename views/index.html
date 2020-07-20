@@ -7,18 +7,33 @@
   </head>
   <body>
     <div class="container">
+      
     <header>
       <h1>API Project: URL Shortener Microservice</h1>
     </header>
-    <h2>User Stories:</h2>
-    <div class="stories">
+
+    <section class="stories">
+      <h2>User Stories:</h2>      
       <ol>
 	<li>
-	FILLIN
+	  I can POST a URL to <code>[project_url]/api/shorturl/new</code>. If the URL is valid, I will receive a number corresponding to a shortened URL in the the JSON response.
 	</li>
+	<li>If I pass an invalid URL that does not follow the <code>http(s)://www.example.com(/more/routes)</code> format, the JSON response will display the error <code>{"error": "invalid URL"}</code>.</li>
+	<li>After obtaining the number <code>some_number</code> corresponding to the shortened URL in (1), I can now visit the URL at <code>[project_url]/api/shorturl/some_number</code>.</li>
       </ol>
-    </div>
-    <div class="use">
+    </section>
+    
+    <section class="short-url-creator">
+      <h2>Try Our URL Microservice Form Below:</h2>
+      <form method='POST' action=''>
+	<label for='form_url'>URL to be turned into number</label>
+	<input id='form_url' type='text'>
+	<button type='submit'>Submit URL</button>
+      </form>
+    </section>
+    
+
+    <section class="use">
       <h2>Example Usage:</h2>
       <div id="urls">
 	FILLIN
@@ -27,7 +42,8 @@
         <div id="output">
 	  FILLIN
 	</div>
-    </div>
+    </section>
+    
     </div>
   </body>
 </html>
