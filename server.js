@@ -2,6 +2,10 @@
 var express = require("express");
 var app = express();
 
+// Load controller(s).
+var urlController = require('./controllers/urlController.js');
+
+
 // Use CORS so FCC can test stuff.
 var cors = require('cors');
 app.use(cors());
@@ -25,17 +29,25 @@ app.use(express.static("public"));
 
 
 // From the current working directory (CWD), send the index page.
+
 app.route('/')
   .get(function (req, res) {
-    res.sendFile(process.cwd() + '/views/index.html');
+      res.sendFile(process.cwd() + '/views/index.html');
   });
 
 
 /*test */
+
 app.route('/test')
     .get(function(req, res) {
 	res.send('working');
     });
+
+
+// Test the controller.
+app.get('/api/shorturl/', urlController.test_controller);
+
+
 
 // Listen on port 3000.
 app.listen(process.env.PORT || 3000, function () {
