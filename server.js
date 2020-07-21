@@ -47,7 +47,8 @@ app.route('/test')
 // Test the controller.
 app.get('/api/shorturl/', urlController.test_controller);
 
-
+// Get website matching a url number, or send error if not in database.
+app.get('/api/shorturl/:urlNumber', urlController.match_url_number);
 
 // Listen on port 3000.
 app.listen(process.env.PORT || 3000, function () {
