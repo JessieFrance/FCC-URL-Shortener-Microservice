@@ -1,10 +1,6 @@
 var Url = require('../models/url');
 var async = require('async');
 
-exports.test_controller = function(req, res){
-    res.send('The controller is working.');
-};
-
 /*
 
 Given a url number (urlNumber) stored in the request, this function
@@ -28,8 +24,20 @@ exports.match_url_number = function(req, res){
     });
 };
 
+
+/*
+
+Given a new url, (new_url) stored in the request, this function 
+creates a new number for the url shorterner api, or displays errors
+for invalid url input.
+
+*/
 exports.url_create_post = function(req, res){
 
-
-    res.json({'output': 'POST is working'});
+    let result = req.body;
+    console.log(result);
+    let new_url = req.body.new_url;
+    console.log(new_url);
+    //res.json({'output':'works'});
+    res.json({'output': new_url});
 };
