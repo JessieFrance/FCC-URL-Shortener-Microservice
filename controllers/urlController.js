@@ -27,3 +27,9 @@ exports.match_url_number = function(req, res){
 	// TODO: Send information if not found in database.
     });
 };
+
+exports.url_create_post = function(req, res){
+
+
+    res.json({'output': 'POST is working'});
+};

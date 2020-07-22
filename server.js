@@ -50,6 +50,11 @@ app.get('/api/shorturl/', urlController.test_controller);
 // Get website matching a url number, or send error if not in database.
 app.get('/api/shorturl/:urlNumber', urlController.match_url_number);
 
+
+// Post a new website url so that users can go to that url with a number.
+app.post('/api/shorturl/new_url', urlController.url_create_post);
+
+
 // Listen on port 3000.
 app.listen(process.env.PORT || 3000, function () {
   console.log('server.js is listening on port 3000');
