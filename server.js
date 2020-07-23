@@ -21,7 +21,9 @@ require('dotenv').config()
 
 // Set up database connection.
 var mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB,
+		 { useNewUrlParser: true,
+		   useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
