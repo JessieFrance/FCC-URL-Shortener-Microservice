@@ -22,8 +22,11 @@ exports.match_url_number = function(req, res){
 	if (err) return;
 	if (dataEntry){
 	    res.redirect(dataEntry.url);
+	} else{
+	    // Send information if not found in database.
+	    res.json({"error": "No url index found for the given input."});
 	}
-	// TODO: Send information if not found in database.
+	
     });
 };
 
@@ -41,6 +44,8 @@ exports.url_create_post = function(req, res, next){
     let new_url = req.body.new_url;
     
     // TODO: check if valid url.
+
+    // TODO: Standardize format of url for lookup in database.
 
     // Check if url already exists in db
     Url.findOne( {"url": new_url }, (err, dataEntry) => {
