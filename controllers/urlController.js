@@ -42,8 +42,33 @@ exports.url_create_post = function(req, res, next){
     
     // TODO: check if valid url.
 
-    // TODO: check if url already exists in db
+    // Check if url already exists in db
+    Url.findOne( {"url": new_url }, (err, dataEntry) => {
+	if (err) return;
+	if (dataEntry){
+	    res.json({"original_url": new_url, "short_url": dataEntry.urlIndex} );
+	} else { // url not found in database
+	    
+	    // Create a url index.
+	    let urlIndex = new Date().getTime();   
+  
+	    // Create new url mongoDB document.
+	    var newUrldB = new Url( { url: new_url, urlIndex: urlIndex} );
 
+	    // Try to save it, or return an error.
+	    newUrldB.save(function (err) {
+		if (err){
+		    return next(err);
+		}
+		// New url was saved without an error.
+
+		// Give json response with new url index.
+		res.json( {"original_url": new_url, "short_url": urlIndex} );
+	    });
+	}
+    });  
+
+    /*
     // Create a url index.
     let urlIndex = new Date().getTime();
     
@@ -62,7 +87,7 @@ exports.url_create_post = function(req, res, next){
 
     });
 
-
+    */
     /*
     let result = req.body;
     console.log(result);
