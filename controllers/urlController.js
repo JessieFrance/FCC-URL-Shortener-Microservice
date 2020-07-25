@@ -1,6 +1,6 @@
 var Url = require('../models/url');
 var async = require('async');
-var dns = require('dns');
+var urlExists = require('url-exists');
 
 
 /*
@@ -44,21 +44,25 @@ exports.url_create_post = function(req, res, next){
     
     // Check if url is even valid.
     if (  !useRegex2CheckURL(new_url) ) {
-	res.json({"error": "url input appears invalid"});
-	return; // Don't send any more data later on!
+	return res.json({"error": "url input appears invalid"});
+
     }
 
 
-    // Perform a dns lookup on the hostname for the url input to
-    // see if the url is valid.
-    /*
-    let lookup = prepUrlForDNSLookup(new_url);
-    dns.lookup(lookup, function (err, addresses, family){
+    // Check if the url exists on the web.
+    var imAUrl = false;
+    urlExists(new_url, function(err, exists) {
 	if (err){
-	    res.json({"error": "input url does not match a valid hostname"});
+	    return next(err);
 	}
+	// No error so check if it exists.
+	imAUrl = exists; 
     });
-    */
+    // This part will cause an error if it is in the urlExists statement above.
+    if (!imAUrl) {
+	return res.json({"error": "url does not exist"});
+    }
+    
     
     // TODO: Standardize format of url for lookup in database.
 
